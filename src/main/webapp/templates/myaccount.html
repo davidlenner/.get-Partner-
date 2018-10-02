@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Account</title>
+</head>
+<body>
+    <div>
+        <button class="logout-button">Logout</button>
+    </div>
+    <div>
+        <form action="/myaccount" method="post">
+            My account
+            <hr>
+            <input name="userName" type="text" placeholder="Your name"> <br>
+            <input name="age" type="text" placeholder="Your age"> <br>
+            <select name="myRoom" id="">
+                <option value="White">White</option>
+                <option value="Green">Green</option>
+                <option value="Blue">Blue</option>
+                <option value="Red">Red</option>
+            </select> <br>
+            <input name="picture" type="file" placeholder="Add a profile picture"> <br>
+            <select name="program-language" id="">
+                <option value="Java">Java</option>
+                <option value="Python">Python</option>
+                <option value="C#">C#</option>
+                <option value="JS">JS</option>
+                <option value="Ruby">Ruby</option>
+                <option value="C++">C++</option>
+            </select> <br>
+            Here I need from - to <br>
+            <input name="bio" type="text" placeholder="About you"> <br>
+            <button type="submit" value="save" name="save-button">Save</button> <br>
+        </form>
+    </div>
+</body>
+</html>
