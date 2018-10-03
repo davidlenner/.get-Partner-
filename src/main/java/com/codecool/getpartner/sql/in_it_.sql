@@ -5,7 +5,7 @@ CREATE TABLE  users (
 );
 
 CREATE TABLE profile(
-  userId INT NOT NULL, /* Ez itt egy fk */
+  userId  INT NOT NULL, /* Ez itt egy fk */
   username VARCHAR (20),
   gender TEXT,
   age INT,
