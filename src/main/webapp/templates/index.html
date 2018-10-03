@@ -13,53 +13,90 @@
             integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 </head>
 <body>
-    <p>
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseRegister" aria-expanded="false" aria-controls="collapseExample">
+    <div class="header">
+        <button class="button btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseRegister" aria-expanded="false" aria-controls="collapseExample">
             Registration
         </button>
-    </p>
-    <div class="collapse" id="collapseRegister">
-        <div class="card card-body">
-            <form action="/" method="post" name="reg">
-                <label for="email">Email</label>
-                <input type="text" id="email" name="email">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password">
-                <button name="register" value="true" type="submit">Register</button>
-            </form>
+
+        <div class="collapse" id="collapseRegister">
+            <div class="card-body">
+                <form action="/" method="post" name="reg">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password">
+                    <button name="register" value="true" type="submit">Register</button>
+                </form>
+            </div>
         </div>
-    </div>
-    <p>
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseLogin" aria-expanded="false" aria-controls="collapseExample">
+
+        <button class=" button btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseLogin" aria-expanded="false" aria-controls="collapseExample">
             Login
         </button>
-    </p>
-    <div class="collapse" id="collapseLogin">
-        <div class="card card-body">
-            <form action="/" method="post" name="reg">
-                <label for="login email">Email</label>
-                <input type="text" id="login email" name="login email">
-                <label for="login password">Password</label>
-                <input type="password" id="login password" name="login password">
-                <button name="login" value="true" type="submit">Sign Up</button>
-            </form>
+        <div class="collapse" id="collapseLogin">
+            <div class="card-body">
+                <form action="/" method="post" name="reg">
+                    <label for="login email">Email</label>
+                    <input type="text" id="login email" name="login email">
+                    <label for="login password">Password</label>
+                    <input type="password" id="login password" name="login password">
+                    <button name="login" value="true" type="submit">Sign Up</button>
+                </form>
+            </div>
         </div>
     </div>
 
     <!-- This is the Daniel's part-->
     <div th:each="user,iterStat : ${user} ">
-        <div>
-            <p th:text="${user.get('username')}">UserName</p> <br>
-            <hr>
+        <div class="card">
             <img class="group list-group-image" src="http://placehold.it/400x250/000/fff"
-                 th:attr="src='/static/img/' + ${user.get('picture')} " alt="" />
+                 th:attr="src='/static/img/' + ${user.get('picture')} " alt=""  width="210" height="220" />
+            <hr>
+            <div th:text="${user.get('username')}">UserName</div> <div th:text="${user.get('age')}">Age</div>
         </div>
     </div>
 
     <style>
-        .card-border{
-            border: black solid;
+        body{
+            background: url("/static/img/backgroundimg/wall.jpg") ;
+            background-size: 100% ;
+        }
+
+        .header{
+            overflow: hidden;
+            background-color: #3b465e;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: +5;
+        }
+
+        .button{
+            float: right;
+            margin: 8px 10px 8px 3px;
+        }
+
+        .card{
+            border: black solid 2px;
+            float: right;
+
+            margin: 3em 0.5em 3em 0.5em;
+            padding: 2px;
+
+        }
+
+        .collapse{
+            margin-bottom: 8px;
         }
     </style>
+
+    <script>
+        var cards = document.getElementsByClassName('card');
+        for(var card of cards){
+            card.addEventListener("click", function(){
+                alert("Please login or register");
+            })
+        }
+    </script>
 </body>
 </html>

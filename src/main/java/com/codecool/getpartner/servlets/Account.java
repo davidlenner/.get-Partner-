@@ -22,18 +22,18 @@ public class Account extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        if(session.getAttribute("id") == null){
+            response.sendRedirect("/");
+        }
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
         WebContext context = new WebContext(request, response, request.getServletContext());
-
         engine.process("myaccount.html", context, response.getWriter());
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         UserAccountHandler userAccount = new UserAccountHandler();
-//        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
-//        WebContext context = new WebContext(request, response, request.getServletContext());
-
         Map<String, String> userInput = new HashMap();
         if(request.getParameter("save-button") != null){
             userInput.put("username", request.getParameter("userName"));
@@ -45,10 +45,9 @@ public class Account extends HttpServlet {
             String currentUserId = (String)session.getAttribute("id");
 
             if(userAccount.isUserUploadFileAImage(filePart)){
-                userInput.put("picture", filePart.getSubmittedFileName()); // THIs is the part where I upload the filename to the DB
+                userInput.put("picture", filePart.getSubmittedFileName());
                 userAccount.fileUploader(filePart);
             }
-
             userInput.put("favoritelanguage", request.getParameter("program-language"));
             userInput.put("bio", request.getParameter("Bio"));
             userAccount.userAccountChanges(userInput, currentUserId);
