@@ -1,18 +1,32 @@
 package com.codecool.getpartner.servlets;
 
 import com.codecool.getpartner.config.TemplateEngineUtil;
+import com.codecool.getpartner.inputhandler.UserAccountHandler;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet(urlPatterns = {"/myaccount"})
+
+@WebServlet(name = "myaccount", urlPatterns = {"/myaccount"},
+    initParams = {@WebInitParam(name="path", value = "/var/www/upload/")})
+@MultipartConfig
 public class Account extends HttpServlet {
 
     @Override
@@ -24,22 +38,26 @@ public class Account extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        UserAccountHandler userAccount = new UserAccountHandler();
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
         WebContext context = new WebContext(request, response, request.getServletContext());
 
         Map<String, String> userInput = new HashMap();
+        // IF you press the sava button
         if(request.getParameter("save-button") != null){
-            userInput.put("UserName", request.getParameter("userName"));
-            userInput.put("Age", request.getParameter("age"));
-            userInput.put("Room", request.getParameter("myRoom"));
-            userInput.put("Picture", request.getParameter("picture"));
-            userInput.put("Language", request.getParameter("program-language"));
-            userInput.put("Bio", request.getParameter("Bio"));
-            // Itt kell elkuldeni a mappet a userInputHandlernek
-            System.out.println(userInput);
-        }
+            userInput.put("username", request.getParameter("userName"));
+            userInput.put("age", request.getParameter("age"));
+            userInput.put("room", request.getParameter("myRoom"));
 
+            Part filePart = request.getPart("myfile");
+            userInput.put("picture", filePart.getSubmittedFileName()); // THIs is the part where I upload the filename to the DB
+            userAccount.fileUploader(filePart);
+
+            userInput.put("favoritelanguage", request.getParameter("program-language"));
+            userInput.put("bio", request.getParameter("Bio"));
+            userAccount.userAccountChanges(userInput);
+        }
         response.sendRedirect("/myaccount");
     }
 }

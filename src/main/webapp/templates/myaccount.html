@@ -9,18 +9,24 @@
         <button class="logout-button">Logout</button>
     </div>
     <div>
-        <form action="/myaccount" method="post">
+        <form action="myaccount" method="post" enctype="multipart/form-data">
             My account
             <hr>
             <input name="userName" type="text" placeholder="Your name"> <br>
+            <select name="gender" id="">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select> <br>
             <input name="age" type="text" placeholder="Your age"> <br>
+            Upload picture <br>
+            <hr>
+            <input type="file" name="myfile"> <br>
             <select name="myRoom" id="">
                 <option value="White">White</option>
                 <option value="Green">Green</option>
                 <option value="Blue">Blue</option>
                 <option value="Red">Red</option>
             </select> <br>
-            <input name="picture" type="file" placeholder="Add a profile picture"> <br>
             <select name="program-language" id="">
                 <option value="Java">Java</option>
                 <option value="Python">Python</option>
@@ -33,6 +39,16 @@
             <input name="bio" type="text" placeholder="About you"> <br>
             <button type="submit" value="save" name="save-button">Save</button> <br>
         </form>
+        <!--<hr>-->
+        <!--For pic upload <br>-->
+        <!--<form class="pure-form pure-form-stacked" method="post" action="myaccount"-->
+              <!--enctype="multipart/form-data">-->
+            <!--<fieldset>-->
+                <!--<legend>File:</legend>-->
+                <!--<input type="file" name="myfile">-->
+                <!--<button name="pic-upload-button" value="upload" type="submit" class="pure-button pure-button-primary">Upload</button>-->
+            <!--</fieldset>-->
+        <!--</form>-->
     </div>
 </body>
 </html>
