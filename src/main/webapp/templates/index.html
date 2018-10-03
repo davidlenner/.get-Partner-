@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>.get(Partner)</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" defer
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" defer
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" defer
+            integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+</head>
+<body>
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseRegister" aria-expanded="false" aria-controls="collapseExample">
+            Registration
+        </button>
+    </p>
+    <div class="collapse" id="collapseRegister">
+        <div class="card card-body">
+            <form action="/" method="post" name="reg">
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password">
+                <button name="register" value="true" type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseLogin" aria-expanded="false" aria-controls="collapseExample">
+            Login
+        </button>
+    </p>
+    <div class="collapse" id="collapseLogin">
+        <div class="card card-body">
+            <form action="/" method="post" name="reg">
+                <label for="login email">Email</label>
+                <input type="text" id="login email" name="login email">
+                <label for="login password">Password</label>
+                <input type="password" id="login password" name="login password">
+                <button name="login" value="true" type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
