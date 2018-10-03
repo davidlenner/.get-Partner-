@@ -53,7 +53,7 @@ public class MainPage extends HttpServlet {
                     session.setAttribute("id", login.getIdByEmail(loginEmail));
                     out.print("Welcome, " + loginEmail);
                 } else {
-                    req.getRequestDispatcher("index.html").include(req, resp);
+                    resp.sendRedirect("/");
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
