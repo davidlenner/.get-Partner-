@@ -2,7 +2,6 @@ package com.codecool.getpartner.inputhandler;
 
 import com.codecool.getpartner.sql.ConnectingDB;
 
-import javax.xml.transform.Result;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
