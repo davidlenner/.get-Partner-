@@ -13,19 +13,30 @@ public class FilterHandler {
 
     public List getAlluserDataFromDB() throws SQLException {
         List userData = new ArrayList();
-        ResultSet restult = ConnectingDB.executeQuery("SELECT * FROM profile" );
-        while(restult.next()){
-            Map<String, String> user = new HashMap<>();
-            user.put("userid", restult.getString("userid"));
-            user.put("username", restult.getString("username"));
-            user.put("gender", restult.getString("gender"));
-            user.put("age", restult.getString("age"));
-            user.put("room", restult.getString("room"));
-            user.put("picture", restult.getString("picture"));
-            user.put("favoritelanguage", restult.getString("favoritelanguage"));
-            user.put("bio", restult.getString("bio"));
-            userData.add(user);
-        }
+        ResultSet result = ConnectingDB.executeQuery("SELECT * FROM profile" );
+        castResultsetToList(result,userData);
         return userData;
+    }
+
+    public List getUsersByRoom(String room) throws SQLException {
+        List usersByRoom = new ArrayList();
+        ResultSet result = ConnectingDB.executeQuery("SELECT * FROM profile WHERE room = " + room);
+        castResultsetToList(result,usersByRoom);
+        return usersByRoom;
+    }
+
+    public void castResultsetToList(ResultSet result,List list) throws SQLException {
+        while (result.next()) {
+            Map<String, String> user = new HashMap<>();
+            user.put("userid", result.getString("userid"));
+            user.put("username", result.getString("username"));
+            user.put("gender", result.getString("gender"));
+            user.put("age", result.getString("age"));
+            user.put("room", result.getString("room"));
+            user.put("picture", result.getString("picture"));
+            user.put("favoritelanguage", result.getString("favoritelanguage"));
+            user.put("bio", result.getString("bio"));
+            list.add(user);
+        }
     }
 }
