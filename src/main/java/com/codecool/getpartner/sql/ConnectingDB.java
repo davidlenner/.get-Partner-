@@ -3,8 +3,8 @@ import java.sql.*;
 
 public class ConnectingDB {
     private static final String url = "jdbc:postgresql://localhost:5432/getpartner";
-    private static final String user = "";
-    private static final String password = "";
+    private static final String user = "danielszakacs";
+    private static final String password = "montana00";
 
     public static ResultSet executeQuery(String query) {
         Connection conn = null;
@@ -12,7 +12,6 @@ public class ConnectingDB {
             conn = DriverManager.getConnection(url, user, password);
             Statement myst = conn.createStatement();
             ResultSet rs = myst.executeQuery(query);
-
             return rs;
         } catch (SQLException ex) {
             ex.printStackTrace();

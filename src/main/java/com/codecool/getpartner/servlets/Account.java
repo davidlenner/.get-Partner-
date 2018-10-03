@@ -9,10 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,6 +41,9 @@ public class Account extends HttpServlet {
             userInput.put("room", request.getParameter("myRoom"));
 
             Part filePart = request.getPart("myfile");
+            HttpSession session = request.getSession();
+            String currentUserId = (String)session.getAttribute("id");
+
             if(userAccount.isUserUploadFileAImage(filePart)){
                 userInput.put("picture", filePart.getSubmittedFileName()); // THIs is the part where I upload the filename to the DB
                 userAccount.fileUploader(filePart);
@@ -51,7 +51,7 @@ public class Account extends HttpServlet {
 
             userInput.put("favoritelanguage", request.getParameter("program-language"));
             userInput.put("bio", request.getParameter("Bio"));
-            userAccount.userAccountChanges(userInput);
+            userAccount.userAccountChanges(userInput, currentUserId);
         }
         response.sendRedirect("/myaccount");
     }

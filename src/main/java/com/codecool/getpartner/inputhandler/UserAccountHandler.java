@@ -14,25 +14,23 @@ import java.util.Map;
 
 public class UserAccountHandler {
 
-    public void userAccountChanges(Map<String, String> userInput){
+    public void userAccountChanges(Map<String, String> userInput, String userId){
         try {
-            if(!isUserIdInProfile()) {
-                ConnectingDB.executeQuery("INSERT INTO profile (userid) VALUES ('" + 2 + "') ;"); // IDe a session userId kell
+            if(!isUserIdInProfile(userId)) {
+                ConnectingDB.executeQuery("INSERT INTO profile (userid) VALUES ('" + userId + "') ;"); // IDe a session userId kell
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         for (String input: userInput.keySet()) {
             if(userInput.get(input) != null){
-                ConnectingDB.executeQuery("UPDATE profile SET " + input +" = '"+ userInput.get(input) + "' WHERE userid = 2 ;" /*Ide kell leirni a userID*/);
+                ConnectingDB.executeQuery("UPDATE profile SET " + input +" = '"+ userInput.get(input) + "' WHERE userid = " + userId +" ;" /*Ide kell leirni a userID*/);
             }
         }
     }
 
-    public boolean isUserIdInProfile() throws SQLException {
-        //Itt hivd meg a session userID
-        int thisIsTheUserId = 2;
-        ResultSet result = ConnectingDB.executeQuery("SELECT userid FROM profile WHERE userid = " + thisIsTheUserId);
+    public boolean isUserIdInProfile(String userId) throws SQLException {
+        ResultSet result = ConnectingDB.executeQuery("SELECT userid FROM profile WHERE userid = " + userId);
         while(result.next()){
             if(result.getString("id") != null){
                 return true;
