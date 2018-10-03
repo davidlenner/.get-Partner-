@@ -38,16 +38,7 @@ public class MainPage extends HttpServlet {
             e.printStackTrace();
         }
         context.setVariable("user", allUserData);
-//        try {
-//            while(result.next()){
-//                    context.setVariable("userName", result.getString("username"));
-//            }
-//        }catch (SQLException e) {
-//                e.printStackTrace();
-//        }
-
         engine.process("index.html", context, resp.getWriter());
-
     }
 
 
