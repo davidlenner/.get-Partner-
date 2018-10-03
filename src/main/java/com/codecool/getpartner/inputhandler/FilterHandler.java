@@ -2,6 +2,7 @@ package com.codecool.getpartner.inputhandler;
 
 import com.codecool.getpartner.sql.ConnectingDB;
 
+import javax.xml.transform.Result;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -23,6 +24,20 @@ public class FilterHandler {
         ResultSet result = ConnectingDB.executeQuery("SELECT * FROM profile WHERE room = " + room);
         castResultsetToList(result,usersByRoom);
         return usersByRoom;
+    }
+
+    public List getUsersByGender(String gender) throws SQLException {
+        List usersByGender = new ArrayList();
+        ResultSet result = ConnectingDB.executeQuery("SELECT * FROM profile WHERE gender = " + gender);
+        castResultsetToList(result,usersByGender);
+        return usersByGender;
+    }
+
+    public List getUsersByAge(int minimumAge,int maximumAge) throws SQLException {
+        List usersByAge = new ArrayList();
+        ResultSet result = ConnectingDB.executeQuery("SELECT * FROM profile WHERE age BETWEEN " + minimumAge + " AND " + maximumAge);
+        castResultsetToList(result,usersByAge);
+        return usersByAge;
     }
 
     public void castResultsetToList(ResultSet result,List list) throws SQLException {
