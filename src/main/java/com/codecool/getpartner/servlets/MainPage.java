@@ -21,18 +21,15 @@ import java.util.List;
 @WebServlet(urlPatterns = {"/"})
 public class MainPage extends HttpServlet {
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         if(session.getAttribute("id") != null){
             resp.sendRedirect("/myaccount");
         }
-
         FilterHandler filterHandler = new FilterHandler();
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
-
         List allUserData = null;
         try {
             allUserData = filterHandler.getAlluserDataFromDB();

@@ -12,7 +12,6 @@ CREATE TABLE profile(
   room VARCHAR (20),
   picture TEXT,
   favoriteLanguage VARCHAR (20),
-  fromTO TEXT, /* TODO Erre itt nincs szukség*/
   bio TEXT
 );
 
