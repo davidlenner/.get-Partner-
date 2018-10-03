@@ -45,5 +45,15 @@
             </form>
         </div>
     </div>
+
+    <!-- This is the Daniel's part-->
+    <div th:each="user,iterStat : ${user} ">
+        <div class="card-border">
+            <p th:text="${user.get('username')}">UserName</p>
+            <div class="user-picture"></div>
+            <br>
+            <div class="user-name"></div>
+        </div>
+    </div>
 </body>
 </html>
