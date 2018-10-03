@@ -40,6 +40,13 @@ public class FilterHandler {
         return usersByAge;
     }
 
+    public List getUsersByFavoriteLanguage(String language) throws SQLException {
+        List usersByFavoriteLanguage = new ArrayList();
+        ResultSet result = ConnectingDB.executeQuery("SELECT * FROM profile WHERE favoritelanguage = " + language);
+        castResultsetToList(result,usersByFavoriteLanguage);
+        return usersByFavoriteLanguage;
+    }
+
     public void castResultsetToList(ResultSet result,List list) throws SQLException {
         while (result.next()) {
             Map<String, String> user = new HashMap<>();

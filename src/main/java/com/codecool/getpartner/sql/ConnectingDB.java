@@ -3,8 +3,8 @@ import java.sql.*;
 
 public class ConnectingDB {
     private static final String url = "jdbc:postgresql://localhost:5432/getpartner";
-    private static final String user = "";
-    private static final String password = "";
+    private static final String user = "david";
+    private static final String password = "codecool123";
 
     public static ResultSet executeQuery(String query) {
         Connection conn = null;
