@@ -44,7 +44,7 @@ public class UserAccountHandler {
         InputStream is = filePart.getInputStream();
         System.out.println(fileName);
 
-        Files.copy(is, Paths.get("/Users/danielszakacs/Documents/OOP/getPartner/src/main/webapp/profilepicture/" + fileName),
+        Files.copy(is, Paths.get("/Users/danielszakacs/Documents/OOP/getPartner/src/main/webapp/static/img/" + fileName),
                 StandardCopyOption.REPLACE_EXISTING);
     }
 

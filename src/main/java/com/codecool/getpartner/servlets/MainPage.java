@@ -15,10 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.FileHandler;
 
 @WebServlet(urlPatterns = {"/"})
 public class MainPage extends HttpServlet {
@@ -26,8 +24,12 @@ public class MainPage extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        FilterHandler filterHandler = new FilterHandler();
+        HttpSession session = req.getSession();
+        if(session.getAttribute("id") != null){
+            resp.sendRedirect("/myaccount");
+        }
 
+        FilterHandler filterHandler = new FilterHandler();
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
 
@@ -63,9 +65,9 @@ public class MainPage extends HttpServlet {
                 if (login.checkEmailAndPassword(loginEmail, loginPassword)) {
                     HttpSession session = req.getSession();
                     session.setAttribute("id", login.getIdByEmail(loginEmail));
-                    out.print("Welcome, " + loginEmail);
+                    resp.sendRedirect("/myaccount"); // TODO this is where we should send your userPage html as a response for the user request
                 } else {
-                    resp.sendRedirect("/myaccount");
+                    resp.sendRedirect("/");
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
