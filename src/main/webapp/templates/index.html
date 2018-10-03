@@ -48,12 +48,18 @@
 
     <!-- This is the Daniel's part-->
     <div th:each="user,iterStat : ${user} ">
-        <div class="card-border">
-            <p th:text="${user.get('username')}">UserName</p>
-            <div class="user-picture"></div>
-            <br>
-            <div class="user-name"></div>
+        <div>
+            <p th:text="${user.get('username')}">UserName</p> <br>
+            <hr>
+            <img class="group list-group-image" src="http://placehold.it/400x250/000/fff"
+                 th:attr="src='/static/img/' + ${user.get('picture')} " alt="" />
         </div>
     </div>
+
+    <style>
+        .card-border{
+            border: black solid;
+        }
+    </style>
 </body>
 </html>
