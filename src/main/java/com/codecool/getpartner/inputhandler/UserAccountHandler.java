@@ -33,7 +33,6 @@ public class UserAccountHandler {
         //Itt hivd meg a session userID
         int thisIsTheUserId = 2;
         ResultSet result = ConnectingDB.executeQuery("SELECT userid FROM profile WHERE userid = " + thisIsTheUserId);
-
         while(result.next()){
             if(result.getString("id") != null){
                 return true;
@@ -49,5 +48,12 @@ public class UserAccountHandler {
 
         Files.copy(is, Paths.get("/Users/danielszakacs/Documents/OOP/getPartner/src/main/webapp/profilepicture/" + fileName),
                 StandardCopyOption.REPLACE_EXISTING);
+    }
+
+    public boolean isUserUploadFileAImage(Part file){
+        if(file.getContentType().contains("image")){
+            return true;
+        }
+        return false;
     }
 }
