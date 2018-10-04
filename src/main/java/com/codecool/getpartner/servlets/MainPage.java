@@ -37,7 +37,7 @@ public class MainPage extends HttpServlet {
             e.printStackTrace();
         }
         context.setVariable("user", allUserData);
-        engine.process("index.html", context, resp.getWriter());
+        engine.process("loggedinpage.html", context, resp.getWriter());
     }
 
 

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>.get(Partner)</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" defer
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" defer
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" defer
+            integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+</head>
+
+<!-- Sidebar -->
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h3>.get(Partner)</h3>
+    </div>
+    <ul class="list-unstyled components">
+        <p>Filter</p>
+        <form action="/filter" method="post" enctype="multipart/form-data">
+            <hr>
+            <input name="userName" type="text" placeholder="Your name"> <br>
+            <select name="gender" id="">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select> <br>
+            <input name="minimumage" type="text" placeholder="Minimum age"><input name="maximumage" type="text" placeholder="Maximum age"> <br>
+            <select name="myRoom" id="">
+                <option value="White">White</option>
+                <option value="Green">Green</option>
+                <option value="Blue">Blue</option>
+                <option value="Red">Red</option>
+            </select> <br>
+            <select name="program-language" id="">
+                <option value="Java">Java</option>
+                <option value="Python">Python</option>
+                <option value="C#">C#</option>
+                <option value="JS">JS</option>
+                <option value="Ruby">Ruby</option>
+                <option value="C++">C++</option>
+            </select> <br>
+            <input name="bio" type="text" placeholder="About you"> <br>
+            <button type="submit" value="save" name="filter-button">Filter</button> <br>
+        </form>
+    <div class="button btn-group">
+        <form action="/" method="post" name="logout">
+            <button  name="logout" value="true" type="submit">Logout</button>
+        </form>
+        <form action="/" method="get" name="myaccount">
+            <button name="myaccount" value="true" type="submit">MyAccount</button>
+        </form>
+    </div>
+
+</nav>
+<!-- Page Content -->
+<div id="content">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+
+            <button type="button" id="sidebarCollapse" class="btn btn-info">
+                <i class="fas fa-align-left"></i>
+                <span>Toggle Sidebar</span>
+            </button>
+        </div>
+    </nav>
+</div>
+</div>
+<!-- This is the Daniel's part-->
+<div th:each="user,iterStat : ${user} ">
+    <div class="card">
+        <img class="group list-group-image" src="http://placehold.it/400x250/000/fff"
+             th:attr="src='/static/img/' + ${user.get('picture')} " alt=""  width="210" height="220" />
+        <hr>
+        <div th:text="${user.get('username')}">UserName</div> <div th:text="${user.get('age')}">Age</div>
+    </div>
+</div>
+
+<style>
+    body{
+        background: url("/static/img/backgroundimg/wall.jpg") ;
+        background-size: 100% ;
+    }
+
+    .button{
+        float: right;
+        margin: 25em 10px 8px 10px;
+    }
+
+    .card{
+        border: black solid 2px;
+        float: right;
+
+        margin: 0.2em 0.5em 3em 0.5em;
+        padding: 2px;
+
+    }
+
+    .collapse{
+        margin-bottom: 8px;
+    }
+
+    #sidebar {
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        z-index: 999;
+        background: #7386D5;
+        color: #fff;
+        transition: all 0.3s;
+    }
+</style>
+</body>
+</html>
