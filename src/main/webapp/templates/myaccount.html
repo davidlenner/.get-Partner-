@@ -84,16 +84,22 @@
             <img class="group list-group-image" src="http://placehold.it/400x250/000/fff"
                  th:attr="src='/static/img/' + ${item.get('picture')} " alt=""  width="210" height="220" />
             <br>
+            UserName:
             <div th:text="${item.get('username')}">UserName</div>
             <br>
+            Age:
             <div th:text="${item.get('age')}">Age</div>
             <br>
+            Your Gender:
             <div th:text="${item.get('gender')}">Gender</div>
             <br>
+            Your current room:
             <div th:text="${item.get('room')}">Room</div>
             <br>
+            Favorite Language
             <div th:text="${item.get('favoritelanguage')}">Language</div>
             <br>
+            Bio:
             <div th:text="${item.get('bio')}">Bio</div>
         </div>
     </div>
@@ -113,7 +119,7 @@
 
         .user-data{
             float: right;
-            margin-right: 10em ;
+            margin-right: 27em ;
             margin-top: 4em;
 
         }

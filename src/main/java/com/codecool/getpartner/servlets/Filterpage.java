@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.FileHandler;
 
 
 @WebServlet(name = "filter", urlPatterns = "/filter")
@@ -41,7 +42,8 @@ public class Filterpage extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        context.setVariable("user", allUserData);
+
+        context.setVariable("data", allUserData);
         engine.process("loggedinpage.html", context, response.getWriter());
     }
 
@@ -75,7 +77,7 @@ public class Filterpage extends HttpServlet {
             e.printStackTrace();
         }
 
-        context.setVariable("user", usersearchResult);
+        context.setVariable("data", usersearchResult);
         engine.process("loggedinpage.html", context, response.getWriter());
 
     }

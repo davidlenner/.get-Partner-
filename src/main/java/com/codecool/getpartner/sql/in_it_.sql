@@ -7,12 +7,12 @@ CREATE TABLE  users (
 CREATE TABLE profile(
   userId  INT NOT NULL, /* Ez itt egy fk */
   username VARCHAR (20),
-  gender TEXT,
+  gender VARCHAR(30),
   age INT,
   room VARCHAR (20),
   picture TEXT,
   favoriteLanguage VARCHAR (20),
-  bio TEXT
+  bio VARCHAR(50)
 );
 
 ALTER TABLE ONLY profile

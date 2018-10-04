@@ -12,7 +12,6 @@ import java.util.Map;
 public class FilterHandler {
 
     public List getAlluserDataFromDB() throws SQLException {
-
         ResultSet result = ConnectingDB.executeQuery("SELECT * FROM profile WHERE username IS NOT NULL" );
         List userData = castResultsetToList(result);
         return userData;
@@ -33,33 +32,6 @@ public class FilterHandler {
         return userData;
     }
 
-//    public List getUsersByRoom(String room) throws SQLException {
-//        List usersByRoom = new ArrayList();
-//        ResultSet result = ConnectingDB.executeQuery("SELECT * FROM profile WHERE room = " + room);
-//        castResultsetToList(result,usersByRoom);
-//        return usersByRoom;
-//    }
-//
-//    public List getUsersByGender(String gender) throws SQLException {
-//        List usersByGender = new ArrayList();
-//        ResultSet result = ConnectingDB.executeQuery("SELECT * FROM profile WHERE gender = " + gender);
-//        castResultsetToList(result,usersByGender);
-//        return usersByGender;
-//    }
-//
-//    public List getUsersByAge(int minimumAge,int maximumAge) throws SQLException {
-//        List usersByAge = new ArrayList();
-//        ResultSet result = ConnectingDB.executeQuery("SELECT * FROM profile WHERE age BETWEEN " + minimumAge + " AND " + maximumAge);
-//        castResultsetToList(result,usersByAge);
-//        return usersByAge;
-//    }
-//
-//    public List getUsersByFavoriteLanguage(String language) throws SQLException {
-//        List usersByFavoriteLanguage = new ArrayList();
-//        ResultSet result = ConnectingDB.executeQuery("SELECT * FROM profile WHERE favoritelanguage = " + language);
-//        castResultsetToList(result,usersByFavoriteLanguage);
-//        return usersByFavoriteLanguage;
-//    }
 
     public List<Map> castResultsetToList(ResultSet result) throws SQLException {
         List<Map> listOfMap = new ArrayList<>();

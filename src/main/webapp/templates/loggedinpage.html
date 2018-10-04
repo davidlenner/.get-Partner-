@@ -52,7 +52,7 @@
         <br>
         <button type="submit" value="save" name="filter-button">Search</button> <br>
     </form>
-    <div class="button btn-group">
+    <div class="">
         <form action="/" method="post" name="logout">
             <button  name="logout" value="true" type="submit">Logout</button>
         </form>
@@ -77,12 +77,17 @@
 </div>
 </div>
 <!-- This is the Daniel's part-->
-<div id="myBtn" th:each="user,iterStat : ${user} ">
+<div id="myBtn" th:each="user,iterStat : ${data} ">
     <div class="card">
         <img class="group list-group-image" src="http://placehold.it/400x250/000/fff"
              th:attr="src='/static/img/' + ${user.get('picture')} " alt=""  width="210" height="220" />
         <hr>
-        <div th:text="${user.get('username')}">UserName</div> <div th:text="${user.get('age')}">Age</div>
+        <p>
+            <h6 th:text="${user.get('username')}">Name</h6>
+            <h6 th:text="${user.get('age')}">Age</h6>
+        </p>
+        <hr>
+        <p th:text="${user.get('bio')}">Bio</p>
     </div>
 </div>
 <div id="myModal" class="modal">
