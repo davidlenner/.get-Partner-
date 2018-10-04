@@ -10,6 +10,12 @@ INSERT INTO public.users(id, email, password) VALUES (11, 'somthing', 'somthing'
 INSERT INTO public.users(id, email, password) VALUES (12, 'somthing', 'somthing');
 INSERT INTO public.users(id, email, password) VALUES (13, 'somthing', 'somthing');
 INSERT INTO public.users(id, email, password) VALUES (14, 'somthing', 'somthing');
+INSERT INTO public.users(id, email, password) VALUES (15, 'somthing', 'somthing');
+INSERT INTO public.users(id, email, password) VALUES (16, 'somthing', 'somthing');
+INSERT INTO public.users(id, email, password) VALUES (17, 'somthing', 'somthing');
+INSERT INTO public.users(id, email, password) VALUES (18, 'somthing', 'somthing');
+INSERT INTO public.users(id, email, password) VALUES (19, 'somthing', 'somthing');
+INSERT INTO public.users(id, email, password) VALUES (20, 'somthing', 'somthing');
 
 INSERT INTO public.profile(userid, username, gender, age, room, picture, favoritelanguage, bio) VALUES (3, 'bubu', 'male', 23, 'White', 'nopic.jpg', 'Java', 'I like to code! Really like to code... ;)' );
 INSERT INTO public.profile(userid, username, gender, age, room, picture, favoritelanguage, bio) VALUES (4, 'bubu', 'male', 23, 'White', 'nopic.jpg', 'Java', 'I like to code! Really like to code... ;)' );
@@ -23,5 +29,11 @@ INSERT INTO public.profile(userid, username, gender, age, room, picture, favorit
 INSERT INTO public.profile(userid, username, gender, age, room, picture, favoritelanguage, bio) VALUES (12, 'bubu', 'male', 23, 'White', 'nopic.jpg', 'Java', 'I like to code! Really like to code... ;)' );
 INSERT INTO public.profile(userid, username, gender, age, room, picture, favoritelanguage, bio) VALUES (13, 'bubu', 'male', 23, 'White', 'nopic.jpg', 'Java', 'I like to code! Really like to code... ;)' );
 INSERT INTO public.profile(userid, username, gender, age, room, picture, favoritelanguage, bio) VALUES (14, 'bubu', 'male', 23, 'White', 'nopic.jpg', 'Java', 'I like to code! Really like to code... ;)' );
+INSERT INTO public.profile(userid, username, gender, age, room, picture, favoritelanguage, bio) VALUES (15, 'bubu', 'male', 23, 'White', 'nopic.jpg', 'Java', 'I like to code! Really like to code... ;)' );
+INSERT INTO public.profile(userid, username, gender, age, room, picture, favoritelanguage, bio) VALUES (16, 'bubu', 'male', 23, 'White', 'nopic.jpg', 'Java', 'I like to code! Really like to code... ;)' );
+INSERT INTO public.profile(userid, username, gender, age, room, picture, favoritelanguage, bio) VALUES (17, 'bubu', 'male', 23, 'White', 'nopic.jpg', 'Java', 'I like to code! Really like to code... ;)' );
+INSERT INTO public.profile(userid, username, gender, age, room, picture, favoritelanguage, bio) VALUES (18, 'bubu', 'male', 23, 'White', 'nopic.jpg', 'Java', 'I like to code! Really like to code... ;)' );
+INSERT INTO public.profile(userid, username, gender, age, room, picture, favoritelanguage, bio) VALUES (19, 'bubu', 'male', 23, 'White', 'nopic.jpg', 'Java', 'I like to code! Really like to code... ;)' );
+INSERT INTO public.profile(userid, username, gender, age, room, picture, favoritelanguage, bio) VALUES (20, 'bubu', 'male', 23, 'White', 'nopic.jpg', 'Java', 'I like to code! Really like to code... ;)' );
 
 

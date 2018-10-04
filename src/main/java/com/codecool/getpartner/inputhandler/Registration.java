@@ -27,7 +27,6 @@ public class Registration {
         }else {
             System.out.print("This email already registered");
         }
-
     }
 
 }

@@ -54,4 +54,8 @@ public class UserAccountHandler {
         }
         return false;
     }
+
+    public void setUserNoPicPicture(String userId){
+        ConnectingDB.executeQuery("INSERT INTO profile (userid, picture) VALUES ('" + userId +"', 'nopic.jpg')");
+    }
 }

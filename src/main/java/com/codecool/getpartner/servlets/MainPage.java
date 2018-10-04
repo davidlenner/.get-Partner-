@@ -4,6 +4,7 @@ import com.codecool.getpartner.inputhandler.Login;
 import com.codecool.getpartner.inputhandler.Registration;
 
 import com.codecool.getpartner.config.TemplateEngineUtil;
+import com.codecool.getpartner.inputhandler.UserAccountHandler;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -43,6 +44,8 @@ public class MainPage extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        UserAccountHandler userHandler = new UserAccountHandler();
+
         PrintWriter out = resp.getWriter();
         if (req.getParameter("register")!= null) {
             String email = req.getParameter("email");
@@ -62,6 +65,7 @@ public class MainPage extends HttpServlet {
                 if (login.checkEmailAndPassword(loginEmail, loginPassword)) {
                     HttpSession session = req.getSession();
                     session.setAttribute("id", login.getIdByEmail(loginEmail));
+                    userHandler.setUserNoPicPicture((String)session.getAttribute("id"));
                     resp.sendRedirect("/myaccount"); // TODO this is where we should send your userPage html as a response for the user request
                 } else {
                     resp.sendRedirect("/");
