@@ -2,7 +2,9 @@ package com.codecool.getpartner.servlets;
 
 
 import com.codecool.getpartner.config.TemplateEngineUtil;
+import com.codecool.getpartner.inputhandler.FilterHandler;
 import com.codecool.getpartner.inputhandler.UserAccountHandler;
+import com.codecool.getpartner.sql.ConnectingDB;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -12,8 +14,13 @@ import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.logging.FileHandler;
 
 @WebServlet(name = "myaccount", urlPatterns = {"/myaccount"},
     initParams = {@WebInitParam(name="path", value = "/var/www/upload/")})
@@ -26,8 +33,17 @@ public class Account extends HttpServlet {
         if(session.getAttribute("id") == null){
             response.sendRedirect("/");
         }
+        FilterHandler filterHandler = new FilterHandler();
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
         WebContext context = new WebContext(request, response, request.getServletContext());
+
+        List<Map> listOfUserData = new ArrayList<>();
+        try {
+            listOfUserData.add(filterHandler.getUserbyId((String)session.getAttribute("id")));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        context.setVariable("user", listOfUserData);
         engine.process("myaccount.html", context, response.getWriter());
     }
 

@@ -1,44 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>My Account</title>
+    <title>.get(Partner)</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" defer
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" defer
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" defer
+            integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <div>
-        <button class="logout-button">Logout</button>
+<!-- Sidebar -->
+<nav id="sidebar">
+    <div class="sidebar-header bg-danger">
+        <h2>.get(Partner)</h2>
     </div>
-    <div>
-        <form action="myaccount" method="post" enctype="multipart/form-data">
-            My account
-            <hr>
-            <input name="userName" type="text" placeholder="Your name"> <br>
-            <select name="gender" id="">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-            </select> <br>
-            <input name="age" type="text" placeholder="Your age"> <br>
-            Upload picture <br>
-            <hr>
-            <input type="file" name="myfile"> <br>
-            <select name="myRoom" id="">
-                <option value="White">White</option>
-                <option value="Green">Green</option>
-                <option value="Blue">Blue</option>
-                <option value="Red">Red</option>
-            </select> <br>
-            <select name="program-language" id="">
-                <option value="Java">Java</option>
-                <option value="Python">Python</option>
-                <option value="C#">C#</option>
-                <option value="JS">JS</option>
-                <option value="Ruby">Ruby</option>
-                <option value="C++">C++</option>
-            </select> <br>
-            Here I need from - to <br>
-            <input name="bio" type="text" placeholder="About you"> <br>
-            <button type="submit" value="save" name="save-button">Save</button> <br>
+    <br>
+    <h5>My Account</h5>
+    <form action="myaccount" method="post" enctype="multipart/form-data">
+        <br>
+        <input name="userName" type="text" placeholder="Your name">
+        <br>
+        <br>
+        <select name="gender" id="">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+        <br>
+        <br>
+        <input name="age" type="text" placeholder="Your age">
+        <br>
+        <br>
+        Upload picture
+        <br>
+        <br>
+        <input type="file" name="myfile">
+        <br>
+        <br>
+
+        <select name="myRoom" id="">
+            <option value="White">White</option>
+            <option value="Green">Green</option>
+            <option value="Blue">Blue</option>
+            <option value="Red">Red</option>
+        </select>
+        <br>
+        <br>
+        <select name="program-language" id="">
+            <option value="Java">Java</option>
+            <option value="Python">Python</option>
+            <option value="C#">C#</option>
+            <option value="JS">JS</option>
+            <option value="Ruby">Ruby</option>
+            <option value="C++">C++</option>
+        </select>
+        <br>
+        <br>
+        Here I need from - to
+        <br>
+        <br>
+        <input name="bio" type="text" placeholder="About you">
+        <br>
+        <br>
+        <button type="submit" value="save" name="save-button">Save</button>
+    </form>
+    <div class="">
+        <form action="/" method="post" name="logout">
+            <button  name="logout-button" value="true" type="submit">Logout</button>
+        </form>
+        <form action="/filter" method="get" name="filter">
+            <button name="filter" value="true" type="submit">Go to the search page</button>
         </form>
     </div>
+</nav>
+
+<div class="user-data">
+    <div th:each="item,iterStat : ${user} ">
+        <div class="card">
+            <img class="group list-group-image" src="http://placehold.it/400x250/000/fff"
+                 th:attr="src='/static/img/' + ${item.get('picture')} " alt=""  width="210" height="220" />
+            <br>
+            <div th:text="${item.get('username')}">UserName</div>
+            <br>
+            <div th:text="${item.get('age')}">Age</div>
+            <br>
+            <div th:text="${item.get('gender')}">Gender</div>
+            <br>
+            <div th:text="${item.get('room')}">Room</div>
+            <br>
+            <div th:text="${item.get('favoritelanguage')}">Language</div>
+            <br>
+            <div th:text="${item.get('bio')}">Bio</div>
+        </div>
+    </div>
+</div>
+
+
+    <style>
+        body{
+            background: url("/static/img/backgroundimg/wall.jpg") ;
+            background-size: 100% ;
+        }
+
+        .button{
+            float: right;
+            margin: 25em 10px 8px 10px;
+        }
+
+        .user-data{
+            float: right;
+            margin-right: 10em ;
+            margin-top: 4em;
+
+        }
+
+        .card{
+            border: black solid 2px;
+            float: right;
+
+            margin: 0.2em 0.5em 3em 0.5em;
+            padding: 2px;
+
+        }
+
+        .collapse{
+            margin-bottom: 8px;
+        }
+
+        #sidebar {
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            z-index: 999;
+            background: #1a237e;
+            color: #fff;
+            transition: all 0.3s;
+        }
+    </style>
 </body>
 </html>

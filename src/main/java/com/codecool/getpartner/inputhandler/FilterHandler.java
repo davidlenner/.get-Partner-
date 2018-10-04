@@ -18,6 +18,21 @@ public class FilterHandler {
         return userData;
     }
 
+    public Map<String, String> getUserbyId(String userId) throws SQLException {
+        Map<String, String> userData = new HashMap();
+        ResultSet result = ConnectingDB.executeQuery("SELECT * FROM profile WHERE userid = '" + userId + "'");
+        while(result.next()){
+            userData.put("username", result.getString("username"));
+            userData.put("gender", result.getString("gender"));
+            userData.put("age", result.getString("age"));
+            userData.put("room", result.getString("room"));
+            userData.put("picture", result.getString("picture"));
+            userData.put("language", result.getString("favoritelanguage"));
+            userData.put("bio", result.getString("bio"));
+        }
+        return userData;
+    }
+
 //    public List getUsersByRoom(String room) throws SQLException {
 //        List usersByRoom = new ArrayList();
 //        ResultSet result = ConnectingDB.executeQuery("SELECT * FROM profile WHERE room = " + room);
