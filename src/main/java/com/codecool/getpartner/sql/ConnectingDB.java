@@ -2,9 +2,9 @@ package com.codecool.getpartner.sql;
 import java.sql.*;
 
 public class ConnectingDB {
-    private static final String url = "jdbc:postgresql://localhost:5432/getpartner";
-    private static final String user = "david";
-    private static final String password = "codecool123";
+    private static final String url = "jdbc:postgresql://localhost:5432/getpartnernew";
+    private static final String user = "zsolti";
+    private static final String password = "ZanzaUF0";
 
     public static ResultSet executeQuery(String query) {
         Connection conn = null;

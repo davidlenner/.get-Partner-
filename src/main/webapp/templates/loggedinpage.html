@@ -15,36 +15,43 @@
 
 <!-- Sidebar -->
 <nav id="sidebar">
-    <div class="sidebar-header">
-        <h3>.get(Partner)</h3>
+    <div class="sidebar-header bg-danger">
+        <h2>.get(Partner)</h2>
     </div>
-    <ul class="list-unstyled components">
-        <p>Filter</p>
-        <form action="filter" method="post">
-            <hr>
-            <input name="userName" type="text" placeholder="Your name"> <br>
-            <select name="gender">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select> <br>
-            <input name="minimumage" type="text" placeholder="Minimum age"><input name="maximumage" type="text" placeholder="Maximum age"> <br>
-            <select name="myRoom" id="">
-                <option value="White">White</option>
-                <option value="Green">Green</option>
-                <option value="Blue">Blue</option>
-                <option value="Red">Red</option>
-            </select> <br>
-            <select name="program-language" id="">
-                <option value="Java">Java</option>
-                <option value="Python">Python</option>
-                <option value="C#">C#</option>
-                <option value="JS">JS</option>
-                <option value="Ruby">Ruby</option>
-                <option value="C++">C++</option>
-            </select> <br>
-            <input name="bio" type="text" placeholder="About you"> <br>
-            <button type="submit" value="save" name="filter-button">Filter</button> <br>
-        </form>
+    <br>
+    <h5>Who do you want to find?</h5>
+    <form action="filter" method="post">
+        <br>
+        <select name="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+        <br>
+        <br>
+        <input name="minimumage" type="text" placeholder="Minimum age">
+        <input name="maximumage" type="text" placeholder="Maximum age">
+        <br>
+        <br>
+        <select name="myRoom" id="">
+            <option value="White">White</option>
+            <option value="Green">Green</option>
+            <option value="Blue">Blue</option>
+            <option value="Red">Red</option>
+        </select>
+        <br>
+        <br>
+        <select name="program-language" id="">
+            <option value="Java">Java</option>
+            <option value="Python">Python</option>
+            <option value="C#">C#</option>
+            <option value="JS">JS</option>
+            <option value="Ruby">Ruby</option>
+            <option value="C++">C++</option>
+        </select>
+        <br>
+        <br>
+        <button type="submit" value="save" name="filter-button">Search</button> <br>
+    </form>
     <div class="button btn-group">
         <form action="/" method="post" name="logout">
             <button  name="logout" value="true" type="submit">Logout</button>
@@ -152,7 +159,7 @@
         left: 0;
         height: 100vh;
         z-index: 1;
-        background: #7386D5;
+        background: #1a237e;
         color: #fff;
         transition: all 0.3s;
     }
