@@ -26,7 +26,7 @@ public class MainPage extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         if(session.getAttribute("id") != null){
-            resp.sendRedirect("/myaccount");
+            resp.sendRedirect("/loggedinpage.html");
         }
         FilterHandler filterHandler = new FilterHandler();
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
@@ -38,7 +38,7 @@ public class MainPage extends HttpServlet {
             e.printStackTrace();
         }
         context.setVariable("user", allUserData);
-        engine.process("loggedinpage.html", context, resp.getWriter());
+        engine.process("index.html", context, resp.getWriter());
     }
 
 
@@ -65,7 +65,7 @@ public class MainPage extends HttpServlet {
                 if (login.checkEmailAndPassword(loginEmail, loginPassword)) {
                     HttpSession session = req.getSession();
                     session.setAttribute("id", login.getIdByEmail(loginEmail));
-                    resp.sendRedirect("/myaccount"); // TODO this is where we should send your userPage html as a response for the user request
+                    resp.sendRedirect("/myaccount");
                 } else {
                     resp.sendRedirect("/");
                 }
