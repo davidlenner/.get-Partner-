@@ -1,5 +1,6 @@
 package com.codecool.getpartner.servlets;
 
+
 import com.codecool.getpartner.config.TemplateEngineUtil;
 import com.codecool.getpartner.inputhandler.UserAccountHandler;
 import org.thymeleaf.TemplateEngine;
@@ -13,7 +14,6 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 
 @WebServlet(name = "myaccount", urlPatterns = {"/myaccount"},
     initParams = {@WebInitParam(name="path", value = "/var/www/upload/")})
