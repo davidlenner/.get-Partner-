@@ -65,7 +65,6 @@ public class MainPage extends HttpServlet {
                 if (login.checkEmailAndPassword(loginEmail, loginPassword)) {
                     HttpSession session = req.getSession();
                     session.setAttribute("id", login.getIdByEmail(loginEmail));
-                    userHandler.setUserNoPicPicture((String)session.getAttribute("id"));
                     resp.sendRedirect("/myaccount"); // TODO this is where we should send your userPage html as a response for the user request
                 } else {
                     resp.sendRedirect("/");
