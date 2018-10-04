@@ -24,10 +24,13 @@ public class Registration {
     public void registing(String email,String password) throws SQLException {
         if (isUserRegistered(email)){
             ConnectingDB.executeQuery("INSERT INTO  users (email,password) VALUES ('" + email + "', '" + password + "')");
+            ResultSet resultSet = ConnectingDB.executeQuery("SELECT id FROM users WHERE email = '"+ email +"' ;");
+            while(resultSet.next()){
+                new UserAccountHandler().setUserNoPicPicture(resultSet.getString("id"));
+            }
         }else {
             System.out.print("This email already registered");
         }
-
     }
 
 }

@@ -13,7 +13,7 @@ public class FilterHandler {
 
     public List getAlluserDataFromDB() throws SQLException {
         List userData = new ArrayList();
-        ResultSet result = ConnectingDB.executeQuery("SELECT * FROM profile" );
+        ResultSet result = ConnectingDB.executeQuery("SELECT * FROM profile WHERE username IS NOT NULL" );
         castResultsetToList(result,userData);
         return userData;
     }

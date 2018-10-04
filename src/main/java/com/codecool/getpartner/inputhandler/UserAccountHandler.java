@@ -17,7 +17,7 @@ public class UserAccountHandler {
     public void userAccountChanges(Map<String, String> userInput, String userId){
         try {
             if(!isUserIdInProfile(userId)) {
-                ConnectingDB.executeQuery("INSERT INTO profile (userid) VALUES ('" + userId + "') ;"); // IDe a session userId kell
+                ConnectingDB.executeQuery("INSERT INTO profile (userid) VALUES ('" + userId + "') ;");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -53,5 +53,9 @@ public class UserAccountHandler {
             return true;
         }
         return false;
+    }
+
+    public void setUserNoPicPicture(String userId){
+        ConnectingDB.executeQuery("INSERT INTO profile (userid, picture) VALUES ('" + userId +"', 'nopic.jpg')");
     }
 }
