@@ -15,36 +15,43 @@
 
 <!-- Sidebar -->
 <nav id="sidebar">
-    <div class="sidebar-header">
-        <h3>.get(Partner)</h3>
+    <div class="sidebar-header bg-danger">
+        <h2>.get(Partner)</h2>
     </div>
-    <ul class="list-unstyled components">
-        <p>Filter</p>
-        <form action="filter" method="post">
-            <hr>
-            <input name="userName" type="text" placeholder="Your name"> <br>
-            <select name="gender">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select> <br>
-            <input name="minimumage" type="text" placeholder="Minimum age"><input name="maximumage" type="text" placeholder="Maximum age"> <br>
-            <select name="myRoom" id="">
-                <option value="White">White</option>
-                <option value="Green">Green</option>
-                <option value="Blue">Blue</option>
-                <option value="Red">Red</option>
-            </select> <br>
-            <select name="program-language" id="">
-                <option value="Java">Java</option>
-                <option value="Python">Python</option>
-                <option value="C#">C#</option>
-                <option value="JS">JS</option>
-                <option value="Ruby">Ruby</option>
-                <option value="C++">C++</option>
-            </select> <br>
-            <input name="bio" type="text" placeholder="About you"> <br>
-            <button type="submit" value="save" name="filter-button">Filter</button> <br>
-        </form>
+    <br>
+    <h5>Who do you want to find?</h5>
+    <form action="filter" method="post">
+        <br>
+        <select name="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+        <br>
+        <br>
+        <input name="minimumage" type="text" placeholder="Minimum age">
+        <input name="maximumage" type="text" placeholder="Maximum age">
+        <br>
+        <br>
+        <select name="myRoom" id="">
+            <option value="White">White</option>
+            <option value="Green">Green</option>
+            <option value="Blue">Blue</option>
+            <option value="Red">Red</option>
+        </select>
+        <br>
+        <br>
+        <select name="program-language" id="">
+            <option value="Java">Java</option>
+            <option value="Python">Python</option>
+            <option value="C#">C#</option>
+            <option value="JS">JS</option>
+            <option value="Ruby">Ruby</option>
+            <option value="C++">C++</option>
+        </select>
+        <br>
+        <br>
+        <button type="submit" value="save" name="filter-button">Search</button> <br>
+    </form>
     <div class="button btn-group">
         <form action="/" method="post" name="logout">
             <button  name="logout" value="true" type="submit">Logout</button>
@@ -70,7 +77,7 @@
 </div>
 </div>
 <!-- This is the Daniel's part-->
-<div th:each="user,iterStat : ${user} ">
+<div id="myBtn" th:each="user,iterStat : ${user} ">
     <div class="card">
         <img class="group list-group-image" src="http://placehold.it/400x250/000/fff"
              th:attr="src='/static/img/' + ${user.get('picture')} " alt=""  width="210" height="220" />
@@ -78,6 +85,48 @@
         <div th:text="${user.get('username')}">UserName</div> <div th:text="${user.get('age')}">Age</div>
     </div>
 </div>
+<div id="myModal" class="modal">
+    <div th:each="data,iterStat : ${user} " class="modal-content">
+        <span class="close">&times;</span>
+        <img class="group list-group-image" src="http://placehold.it/400x250/000/fff"
+             th:attr="src='/static/img/' + ${data.get('picture')} " alt=""  width="210" height="220" />
+        <hr>
+        <p th:text="${data.get('username')}">Name</p>
+        <p th:text="${data.get('age')}">Age</p>
+        <p th:text="${data.get('room')}">Room</p>
+        <p th:text="${data.get('favoritelanguage')}">Favorite Language</p>
+        <p th:text="${data.get('bio')}">Bio</p>
+    </div>
+</div>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById('myModal');
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
 
 <style>
     body{
@@ -109,10 +158,48 @@
         top: 0;
         left: 0;
         height: 100vh;
-        z-index: 999;
-        background: #7386D5;
+        z-index: 1;
+        background: #1a237e;
         color: #fff;
         transition: all 0.3s;
+    }
+
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 2; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
     }
 </style>
 </body>
